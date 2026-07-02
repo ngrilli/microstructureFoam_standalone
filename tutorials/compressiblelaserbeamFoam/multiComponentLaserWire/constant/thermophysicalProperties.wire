@@ -1,0 +1,74 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties.wire;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phaseState      condensed;  // or: gaseous, solid
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState adiabaticPerfectFluid;//rhoConst;//perfectFluid;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+// Table 1 in:
+// https://www.sciencedirect.com/science/article/pii/S1359645416310102
+TSolidus	1878.0;
+TLiquidus	1928.0;
+LatentHeat	1.305e6; // average between solid and liquid at melting point (J/Kg)
+
+// Highest data point (low porosity) in Figure 2 in:
+// https://iopscience.iop.org/article/10.1088/0256-307X/24/1/051/pdf
+// 0.4 \sigma_0 (Siemens per meter)
+elec_conductivity	0.936e6; // S/m
+
+// Ti64 is weakly paramagnetic = use the same value as vacuum: 4 pi 10^{-7} H/m
+magnetic_permeability	1.256e-6; // H/m
+
+mixture
+{
+    specie
+    {
+        molWeight   47.6;
+    }
+    // Murnaghan model = stiffened adiabatic gas equation of state
+    // https://en.wikipedia.org/wiki/Tait_equation
+    equationOfState 
+    {
+        p0	1e5; // atmospheric pressure
+        rho0    4000; // Density of liquid metal
+        gamma	1.2; // ratio between specific heats
+        B	1e7; // stiffness parameter that controls compressibility
+    }
+    thermodynamics
+    {
+        Cp          700; // average between solid and liquid (J / Kg / K)
+        Hf          0; // relevant for combustion and chemical reactions
+    }
+    transport
+    {
+        mu  5.0e-3; // viscosity (Pa s)
+
+        // Prandtl number = mu * Cp / thermal conductivity = 0.005 * 700 / 25 = 0.14
+        Pr  0.14;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,141 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  v2006
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      alpha.air;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    top
+    {
+		type	alphaContactAngle;
+        thetaProperties
+        (
+            (substrate substratevapour) 90 0 0 0
+			(substrate wire) 90 0 0 0
+            (substrate wirevapour) 90 0 0 0
+			(substrate air) 90 0 0 0
+
+            (substratevapour wire) 90 0 0 0
+            (substratevapour wirevapour) 90 0 0 0
+            (substratevapour air) 90 0 0 0
+
+            (wire wirevapour) 90 0 0 0
+			(wire air) 90 0 0 0
+
+            (wirevapour air) 90 0 0 0
+        );
+        value	uniform 0;
+    }
+    
+    bottom
+    {
+        type	alphaContactAngle;
+        thetaProperties
+        (    
+            (substrate substratevapour) 90 0 0 0
+			(substrate wire) 90 0 0 0
+            (substrate wirevapour) 90 0 0 0
+			(substrate air) 90 0 0 0
+
+            (substratevapour wire) 90 0 0 0
+            (substratevapour wirevapour) 90 0 0 0
+            (substratevapour air) 90 0 0 0
+
+            (wire wirevapour) 90 0 0 0
+			(wire air) 90 0 0 0
+
+            (wirevapour air) 90 0 0 0
+        );
+        value	uniform 0;
+    }
+    
+    right
+    {
+        type	alphaContactAngle;
+        thetaProperties
+        (
+            (substrate substratevapour) 90 0 0 0
+			(substrate wire) 90 0 0 0
+            (substrate wirevapour) 90 0 0 0
+			(substrate air) 90 0 0 0
+
+            (substratevapour wire) 90 0 0 0
+            (substratevapour wirevapour) 90 0 0 0
+            (substratevapour air) 90 0 0 0
+
+            (wire wirevapour) 90 0 0 0
+			(wire air) 90 0 0 0
+
+            (wirevapour air) 90 0 0 0
+        );
+        value	uniform 0;
+    }
+
+    left
+    {
+        type	alphaContactAngle;
+        thetaProperties
+        (
+            (substrate substratevapour) 90 0 0 0
+			(substrate wire) 90 0 0 0
+            (substrate wirevapour) 90 0 0 0
+			(substrate air) 90 0 0 0
+
+            (substratevapour wire) 90 0 0 0
+            (substratevapour wirevapour) 90 0 0 0
+            (substratevapour air) 90 0 0 0
+
+            (wire wirevapour) 90 0 0 0
+			(wire air) 90 0 0 0
+
+            (wirevapour air) 90 0 0 0
+        );
+        value	uniform 0;
+    }
+    
+    front
+    {
+        type	alphaContactAngle;
+        thetaProperties
+        (
+            (substrate substratevapour) 90 0 0 0
+			(substrate wire) 90 0 0 0
+            (substrate wirevapour) 90 0 0 0
+			(substrate air) 90 0 0 0
+
+            (substratevapour wire) 90 0 0 0
+            (substratevapour wirevapour) 90 0 0 0
+            (substratevapour air) 90 0 0 0
+
+            (wire wirevapour) 90 0 0 0
+			(wire air) 90 0 0 0
+
+            (wirevapour air) 90 0 0 0
+        );
+        value	uniform 0;
+    }
+    
+    back
+    {
+        type	fixedValue;
+        value	uniform 1;
+    }
+    
+}
+
+// ************************************************************************* //

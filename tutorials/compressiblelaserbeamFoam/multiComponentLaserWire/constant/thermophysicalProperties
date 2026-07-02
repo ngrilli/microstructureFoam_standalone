@@ -1,0 +1,121 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phases (substrate substratevapour wire wirevapour air);
+
+pMin            1000;
+
+P0	1e5;
+interface_thickness	1e-5;
+
+// Surface tension
+// Table 1 in
+// https://www.sciencedirect.com/science/article/pii/S1359645416310102
+// unit: N/m
+sigmas
+(
+	(substratevapour substrate)	1.4
+	(substrate wire)	0.0
+	(wirevapour substrate)	1.4
+	(air substrate)	1.4
+
+	(substratevapour wire)	1.4
+	(substratevapour wirevapour)	0.0
+	(substratevapour air)	0.0
+
+	(wirevapour wire)	1.4
+	(air wire)	1.4
+
+	(wirevapour air)	0.0
+);
+
+// Temperature coefficient of surface tension
+// Table 1 in
+// https://www.sciencedirect.com/science/article/pii/S1359645416310102
+// unit: N/(m*K)
+dsigmadT
+(
+	(substratevapour substrate)	-2.6e-4
+	(substrate wire)	0.0
+	(wirevapour substrate)	-2.6e-4
+	(air substrate)	-2.6e-4
+
+	(substratevapour wire)	-2.6e-4
+	(substratevapour wirevapour)	0.0
+	(substratevapour air)	0.0
+
+	(wirevapour wire)	-2.6e-4
+	(air wire)	-2.6e-4
+
+	(wirevapour air)	0.0
+);
+
+// Evaporation temperature
+// Table 1 in
+// https://www.sciencedirect.com/science/article/pii/S1359645416310102
+// unit: K
+boils
+(
+	(substratevapour substrate) 3133.0
+	(wirevapour wire) 3133.0
+);
+
+// Enthalpy change of evaporation
+// Table 1 in
+// https://www.sciencedirect.com/science/article/pii/S1359645416310102
+// unit: J/kg
+LatentHeatGas
+(
+	(substratevapour substrate) 4.7e6
+	(wirevapour wire) 4.7e6
+);
+
+interfaceCompression
+(
+	(substratevapour substrate)	1.0
+	(substrate wire)	0.0
+	(wirevapour substrate)	1.0
+	(air substrate)	1.0
+
+	(substratevapour wire)	1.0
+	(substratevapour wirevapour)	0.0
+	(substratevapour air)	0.0
+
+	(wirevapour wire)	1.0
+	(air wire)	1.0
+
+	(wirevapour air)	0.0
+);
+
+interfaceDiffusion
+(
+	(substratevapour substrate)	0.0
+	(substrate wire)	1.0e-9
+	(wirevapour substrate)	0.0
+	(air substrate)	0.0
+
+	(substratevapour wire)	0.0
+	(substratevapour wirevapour)	1.0e-9
+	(substratevapour air)	1.0e-9
+
+	(wirevapour wire)	0.0
+	(air wire)	0.0
+
+	(wirevapour air)	1.0e-9
+);
+
+// ************************************************************************* //

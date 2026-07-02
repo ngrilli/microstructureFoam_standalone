@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+    volScalarFieldValue alpha.substrate 0
+    volScalarFieldValue alpha.substratevapour 0
+    volScalarFieldValue alpha.wire 0
+    volScalarFieldValue alpha.wirevapour 0
+    volScalarFieldValue alpha.air 1
+    volScalarFieldValue T 300.0
+    volScalarFieldValue DCwire 0
+    volVectorFieldValue U (0 0 0)
+    volVectorFieldValue Us (0 0 0)
+);
+
+regions
+(
+    boxToCell
+    {
+        box (-5000e-6 0e-6 -10000e-6) (5000e-6 1000e-6 1000e-6);
+        fieldValues
+        (
+          volScalarFieldValue alpha.substrate 1
+          volScalarFieldValue alpha.air 0
+        );
+    }
+    
+    cylinderToCell // Initialize metal in the wire: wire with axis along y axis:
+    {
+      p1 	 (0.0  -4000e-6   0.0);
+      p2 	 (0.0   0e-6 	  0.0);
+      radius 500e-6;
+      fieldValues
+      (
+        volScalarFieldValue alpha.wire 1
+        volScalarFieldValue alpha.air 0
+      );
+    }
+);
+
+// ************************************************************************* //

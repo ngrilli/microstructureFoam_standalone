@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties.wirevapour;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phaseState      gaseous;  // or: gaseous, solid
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          eConst;
+    equationOfState perfectFluid;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+// air-like parameters
+TSolidus	5.0;
+TLiquidus	10.0;
+LatentHeat	1.0;
+elec_conductivity	1.0;
+
+// Ti64 is weakly paramagnetic = use the same value as vacuum: 4 pi 10^{-7} H/m
+magnetic_permeability	1.256e-6; // same as vacuum 4 pi 10^{-7} H/m
+
+mixture
+{
+    specie
+    {
+        molWeight   47.6;
+    }
+    equationOfState
+    {
+        rho0         4.0; // assuming 3 order of magnitude below liquid
+        R	8.314;
+    }
+    thermodynamics
+    {
+        Cv  700; // average between solid and liquid (J / Kg / K)
+        Hf  0; // relevant for combustion and chemical reactions
+    }
+    transport
+    {
+        mu          1.84e-05; // air-like viscosity
+        Pr          0.7; // air-like Prandtl number
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,189 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      PhaseFieldProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+lasers
+(
+    laser0
+    {
+        timeVsLaserPosition
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPosition0";
+            outOfBounds clamp;
+        }
+
+        timeVsLaserPower
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPower0";
+            outOfBounds clamp;
+        }
+
+        // Laser angle (normalised in the code)
+        V_incident (0.0 0.866 0.5);
+
+
+        // Laser radius
+        laserRadius 500e-6;
+
+        // Laser physical properties
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29; // from Ti test case ~/projects/LaserbeamFoam/tutorials/laserbeamFoam/Five_lasers/constant/LaserProperties
+
+        // Laser profile type (defaults to 2)
+        //Radius_Flavour 2.0;
+    }
+
+    laser1
+    {
+        timeVsLaserPosition
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPosition1";
+            outOfBounds clamp;
+        }
+
+        timeVsLaserPower
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPower1";
+            outOfBounds clamp;
+        }
+
+        // Laser angle (normalised in the code)
+        V_incident (0.433 0.866 0.25);
+
+        // Laser radius
+        laserRadius 500e-6;
+
+        // Laser physical properties
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29;
+
+        // Laser profile type (defaults to 2)
+        //Radius_Flavour 2.0;
+    }
+        
+    laser2
+    {
+        timeVsLaserPosition
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPosition2";
+            outOfBounds clamp;
+        }
+
+        timeVsLaserPower
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPower2";
+            outOfBounds clamp;
+        }
+
+        // Laser angle (normalised in the code)
+        V_incident (0.433 0.866 -0.25);
+
+        // Laser radius
+        laserRadius 500e-6;
+
+        // Laser physical properties
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29;
+
+        // Laser profile type (defaults to 2)
+        //Radius_Flavour 2.0;
+    }
+        
+    laser3
+    {
+        timeVsLaserPosition
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPosition3";
+            outOfBounds clamp;
+        }
+
+        timeVsLaserPower
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPower3";
+            outOfBounds clamp;
+        }
+
+        // Laser angle (normalised in the code)
+        V_incident (0.0 0.866 -0.5);
+
+        // Laser radius
+        laserRadius 500e-6;
+
+        // Laser physical properties
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29;
+
+        // Laser profile type (defaults to 2)
+        //Radius_Flavour 2.0;
+    }
+        
+    laser4
+    {
+        timeVsLaserPosition
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPosition4";
+            outOfBounds clamp;
+        }
+
+        timeVsLaserPower
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPower4";
+            outOfBounds clamp;
+        }
+
+        // Laser angle (normalised in the code)
+        V_incident (-0.433 0.866 -0.25);
+
+        // Laser radius
+        laserRadius 500e-6;
+
+        // Laser physical properties
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29;
+
+        // Laser profile type (defaults to 2)
+        //Radius_Flavour 2.0;
+    }
+		
+    laser5
+    {
+        timeVsLaserPosition
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPosition5";
+            outOfBounds clamp;
+        }
+
+        timeVsLaserPower
+        {
+            file    "$FOAM_CASE/constant/timeVsLaserPower5";
+            outOfBounds clamp;
+        }
+
+        // Laser angle (normalised in the code)
+        V_incident (-0.433 0.866 0.25);
+
+        // Laser radius
+        laserRadius 500e-6;
+
+        // Laser physical properties
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29;
+     
+        // Laser profile type (defaults to 2)
+        //Radius_Flavour 2.0;
+    }
+);
+
